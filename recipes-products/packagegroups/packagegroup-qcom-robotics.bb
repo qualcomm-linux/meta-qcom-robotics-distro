@@ -19,6 +19,8 @@ RDEPENDS:packagegroup-qcom-robotics = "\
     packagegroup-robotics-filesystem-utils \
     packagegroup-robotics-support-utils \
     modemmanager \
+    librealsense2 \
+    qirf-sdk \
     "
 
 RDEPENDS:packagegroup-robotics-support-utils = "\
