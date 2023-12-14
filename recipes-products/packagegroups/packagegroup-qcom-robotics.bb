@@ -18,6 +18,7 @@ PACKAGES = ' \
 RDEPENDS:packagegroup-qcom-robotics = "\
     packagegroup-robotics-filesystem-utils \
     packagegroup-robotics-support-utils \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', 'packagegroup-qti-ros2-humble', '', d)} \
     modemmanager \
     librealsense2 \
     qirf-sdk \
