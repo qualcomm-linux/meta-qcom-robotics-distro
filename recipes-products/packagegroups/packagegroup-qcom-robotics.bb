@@ -10,18 +10,21 @@ inherit packagegroup
 PROVIDES = "${PACKAGES}"
 
 PACKAGES = ' \
+    packagegroup-qcom-robotics-base \
     packagegroup-qcom-robotics \
     packagegroup-robotics-filesystem-utils \
     packagegroup-robotics-support-utils \
     '
 
-RDEPENDS:packagegroup-qcom-robotics = "\
+RDEPENDS:packagegroup-qcom-robotics-base = "\
     packagegroup-robotics-filesystem-utils \
     packagegroup-robotics-support-utils \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', 'packagegroup-qti-ros2-humble', '', d)} \
     modemmanager \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', 'packagegroup-qti-ros2-humble', '', d)} \
+    "
+
+RDEPENDS:packagegroup-qcom-robotics = "\
     librealsense2 \
-    qirf-sdk \
     "
 
 RDEPENDS:packagegroup-robotics-support-utils = "\
