@@ -18,8 +18,10 @@ PACKAGES = ' \
 
 RDEPENDS:packagegroup-qcom-robotics-base = "\
     packagegroup-robotics-filesystem-utils \
+    packagegroup-qcom-core \
     packagegroup-robotics-support-utils \
     modemmanager \
+    packagegroup-qcom-initscripts \
     ${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', 'packagegroup-qti-ros2-humble', '', d)} \
     "
 
