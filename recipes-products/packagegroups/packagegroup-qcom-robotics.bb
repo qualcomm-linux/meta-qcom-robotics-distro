@@ -1,5 +1,5 @@
-SUMMARY = "Basic programs and scripts"
-DESCRIPTION = "Package group to bring in all basic packages"
+SUMMARY = "Robotics programs and scripts"
+DESCRIPTION = "Robotics Package group to bring in robotics feature"
 
 LICENSE = "BSD-3-Clause-Clear"
 
@@ -10,37 +10,17 @@ inherit packagegroup
 PROVIDES = "${PACKAGES}"
 
 PACKAGES = ' \
-    packagegroup-qcom-robotics-base \
     packagegroup-qcom-robotics \
-    packagegroup-robotics-filesystem-utils \
-    packagegroup-robotics-support-utils \
     '
 
-RDEPENDS:packagegroup-qcom-robotics-base = "\
-    packagegroup-robotics-filesystem-utils \
-    packagegroup-qcom-core \
-    packagegroup-robotics-support-utils \
-    modemmanager \
-    packagegroup-qcom-initscripts \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', 'packagegroup-qti-ros2-humble', '', d)} \
-    "
-
-RDEPENDS:packagegroup-qcom-robotics = "\
-    librealsense2 \
-    "
-
-RDEPENDS:packagegroup-robotics-support-utils = "\
-    chrony \
-    libinput \
-    libinput-bin \
-    libnl \
-    libxml2 \
-    "
-
-RDEPENDS:packagegroup-robotics-filesystem-utils = "\
-    e2fsprogs \
-    e2fsprogs-e2fsck \
-    e2fsprogs-mke2fs \
-    e2fsprogs-resize2fs \
-    e2fsprogs-tune2fs \
-    "
+RDEPENDS:packagegroup-qcom-robotics = " \
+    qirf-librealsense2 \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', ' \
+    qirf-rplidar-ros2 \
+    qirf-realsense2-camera \
+    qirf-realsense2-camera-msgs \
+    qirf-nav2-bringup \
+    sensor-client \
+    qirf-qrb-ros-imu \
+    ', '', d)} \
+"
