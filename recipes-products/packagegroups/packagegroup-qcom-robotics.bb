@@ -20,7 +20,19 @@ RDEPENDS:packagegroup-qcom-robotics = " \
     qirf-realsense2-camera \
     qirf-realsense2-camera-msgs \
     qirf-nav2-bringup \
+    sensor-service \
     sensor-client \
     qirf-qrb-ros-imu \
+    battery-service \
+    battery-client \
+    qirf-qrb-ros-battery \
+    qirf-auto-explore \
+    qirf-follow-me \
+    qirf-mono-vslam \
+    qirf-depth-vslam \
+    qirf-voxel-map \
+    qirf-ocr-service \
+    qirf-qrb-ros-camera \
+    dmabuf-transport \
     ', '', d)} \
 "
