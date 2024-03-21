@@ -44,6 +44,7 @@ BBLAYERS += " \\
   \${WORKSPACE}/layers/meta-qcom-robotics-sdk \\
   \${WORKSPACE}/layers/meta-qcom-robotics-distro \\
   \${WORKSPACE}/layers/meta-qcom-robotics \\
+  \${WORKSPACE}/layers/meta-qcom-qim-product-sdk \\
   \${WORKSPACE}/layers/meta-ros/meta-ros2 \\
   \${WORKSPACE}/layers/meta-ros/meta-ros2-humble \\
   \${WORKSPACE}/layers/meta-ros/meta-ros-common \\
