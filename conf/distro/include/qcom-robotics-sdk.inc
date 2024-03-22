@@ -54,6 +54,14 @@ TOOLCHAIN_TARGET_TASK:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ros2-hu
     ament-lint-auto \
     foonathan-memory-staticdev \
     opencv-staticdev \
+    sensor-client \
+    battery-client \
+    syslog-plumber \
+    camera-server \
+    dmabuf-transport \
+    image-transport \
+    yaml-cpp \
+    camera-info-manager \
 ', '', d)}"
 
 # To provide libs for GPIO sample in sdk
