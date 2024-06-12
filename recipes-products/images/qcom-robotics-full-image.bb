@@ -1,17 +1,11 @@
-require recipes-products/images/qcom-multimedia-image.bb
+include recipes-products/images/qcom-multimedia-image.bb
 
-SUMMARY = "multimedia image with ros and qirf sdk"
+SUMMARY = "multimedia image with ros and qirp sdk"
 
 LICENSE = "BSD-3-Clause-Clear"
 
 CORE_IMAGE_BASE_INSTALL += " \
-    packagegroup-qcom-robotics \
+    qirp-sdk \
     ${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', 'packagegroup-qti-ros2-humble', '', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', 'packagegroup-qcom-robotics', '', d)} \
 "
-
-CORE_IMAGE_EXTRA_INSTALL += " \
-    libgpiod \
-    libgpiod-dev \
-"
-
-TOOLCHAIN_TARGET_TASK:remove = "packagegroup-qcom-robotics"

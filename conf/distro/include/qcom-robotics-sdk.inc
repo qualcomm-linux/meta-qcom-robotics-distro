@@ -26,46 +26,5 @@ TOOLCHAIN_HOST_TASK:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humb
     nativesdk-rosidl-typesupport-introspection-cpp \
 ', '', d)}"
 
-# To provide libs for ROS node compile in SDK
-TOOLCHAIN_TARGET_TASK:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', ' \
-    ament-cmake \
-    ament-cmake-auto \
-    ament-cmake-core \
-    ament-cmake-export-definitions \
-    ament-cmake-export-dependencies \
-    ament-cmake-export-include-directories \
-    ament-cmake-export-interfaces \
-    ament-cmake-export-libraries \
-    ament-cmake-export-link-flags \
-    ament-cmake-export-targets \
-    ament-cmake-gen-version-h \
-    ament-cmake-gmock \
-    ament-cmake-google-benchmark \
-    ament-cmake-gtest \
-    ament-cmake-include-directories \
-    ament-cmake-libraries \
-    ament-cmake-nose \
-    ament-cmake-pytest \
-    ament-cmake-python \
-    ament-cmake-ros \
-    ament-cmake-target-dependencies \
-    ament-cmake-test \
-    ament-cmake-version \
-    ament-lint-auto \
-    foonathan-memory-staticdev \
-    opencv-staticdev \
-    sensor-client \
-    battery-client \
-    syslog-plumber \
-    camera-server \
-    dmabuf-transport \
-    image-transport \
-    yaml-cpp \
-    camera-info-manager \
-', '', d)}"
-
-# To provide libs for GPIO sample in sdk
-TOOLCHAIN_TARGET_TASK:append = " \
-    libgpiod \
-    libgpiod-dev \
-"
+TOOLCHAIN_TARGET_TASK:remove = "qirp-sdk"
+TOOLCHAIN_TARGET_TASK:remove = "qirf-sdk"

@@ -1,5 +1,5 @@
-SUMMARY = "Robotics programs and scripts"
-DESCRIPTION = "Robotics Package group to bring in robotics feature"
+SUMMARY = "Robotics SDK and ESDK Adding"
+DESCRIPTION = "Robotics Package group for SDK and ESDK"
 
 LICENSE = "BSD-3-Clause-Clear"
 
@@ -14,25 +14,58 @@ PACKAGES = ' \
     '
 
 RDEPENDS:packagegroup-qcom-robotics = " \
-    qirf-librealsense2 \
     ${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', ' \
-    qirf-rplidar-ros2 \
-    qirf-realsense2-camera \
-    qirf-realsense2-camera-msgs \
-    qirf-nav2-bringup \
-    sensor-service \
+    ament-cmake \
+    ament-cmake-auto \
+    ament-cmake-core \
+    ament-cmake-export-definitions \
+    ament-cmake-export-dependencies \
+    ament-cmake-export-include-directories \
+    ament-cmake-export-interfaces \
+    ament-cmake-export-libraries \
+    ament-cmake-export-link-flags \
+    ament-cmake-export-targets \
+    ament-cmake-gen-version-h \
+    ament-cmake-gmock \
+    ament-cmake-google-benchmark \
+    ament-cmake-gtest \
+    ament-cmake-include-directories \
+    ament-cmake-libraries \
+    ament-cmake-nose \
+    ament-cmake-pytest \
+    ament-cmake-python \
+    ament-cmake-ros \
+    ament-cmake-target-dependencies \
+    ament-cmake-test \
+    ament-cmake-version \
+    ament-lint-auto \
+    foonathan-memory-staticdev \
+    opencv-staticdev \
     sensor-client \
-    qirf-qrb-ros-imu \
-    battery-service \
     battery-client \
-    qirf-qrb-ros-battery \
-    qirf-auto-explore \
-    qirf-follow-me \
-    qirf-mono-vslam \
-    qirf-depth-vslam \
-    qirf-voxel-map \
-    qirf-ocr-service \
-    qirf-qrb-ros-camera \
+    syslog-plumber-dev \
+    camera-server \
     dmabuf-transport \
+    image-transport \
+    yaml-cpp \
+    camera-info-manager \
+    rclcpp \
+    sensor-msgs \
+    nav-msgs \
+    std-msgs \
+    geometry-msgs \
+    tf2 \
+    tf2-ros \
+    tf2-geometry-msgs \
+    cv-bridge \
+    image-transport \
+    rosidl-adapter \
+    adreno \
+    fastcv-binaries \
+    ncnn-dev \
+    rclcpp-components \
+    rcutils \
+    libgpiod \
+    libgpiod-dev \
     ', '', d)} \
 "
