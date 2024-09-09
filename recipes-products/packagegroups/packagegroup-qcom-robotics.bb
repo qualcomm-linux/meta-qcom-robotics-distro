@@ -41,10 +41,6 @@ RDEPENDS:packagegroup-qcom-robotics = " \
     ament-lint-auto \
     foonathan-memory-staticdev \
     opencv-staticdev \
-    sensor-client \
-    battery-client \
-    syslog-plumber-dev \
-    camera-server \
     dmabuf-transport \
     image-transport \
     yaml-cpp \
@@ -58,14 +54,21 @@ RDEPENDS:packagegroup-qcom-robotics = " \
     tf2-ros \
     tf2-geometry-msgs \
     cv-bridge \
-    image-transport \
     rosidl-adapter \
-    adreno \
-    fastcv-binaries \
     ncnn-dev \
     rclcpp-components \
     rcutils \
     libgpiod \
     libgpiod-dev \
+    ', '', d)} \
+"
+RDEPENDS:packagegroup-qcom-robotics:append:qcm6490:qcom-custom-bsp = " \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', ' \
+    sensor-client \
+    battery-client \
+    syslog-plumber \
+    qcom-camera-server \
+    ${GL_PROVIDER} \
+    qcom-fastcv-binaries \
     ', '', d)} \
 "

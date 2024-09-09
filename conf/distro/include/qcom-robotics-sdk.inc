@@ -26,5 +26,12 @@ TOOLCHAIN_HOST_TASK:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humb
     nativesdk-rosidl-typesupport-introspection-cpp \
 ', '', d)}"
 
+
+# To provide libs for VSLAM ROS node compile in SDK
+TOOLCHAIN_HOST_TASK:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', ' \
+    nativesdk-ament-package \
+', '', d)}"
+
+
 TOOLCHAIN_TARGET_TASK:remove = "qirp-sdk"
 TOOLCHAIN_TARGET_TASK:remove = "qirf-sdk"

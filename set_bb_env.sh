@@ -34,20 +34,65 @@ THIS_SCRIPT=$(readlink -f ${BASH_SOURCE[0]})
 # Find where the global conf directory is...
 scriptdir="$(dirname "${THIS_SCRIPT}")"
 # Find where the workspace is...
-WS=$(readlink -f $scriptdir/../..)
-#echo "ws:${WS}"
-source ${WS}/setup-environment
+SRC_TREE=$(readlink -f $scriptdir/../..)
 
-cat >> ${BUILDDIR}/conf/bblayers.conf <<EOF
+patches_for_meta_ros () {
+    PATCHES_DIR=${SRC_TREE}/layers/*/patches
+    cd ${SRC_TREE}/layers/meta-ros
+    find $PATCHES_DIR -name "*.patch" | while read -r patchfile; do
+        if git apply --check "$patchfile"; then
+            git apply "$patchfile"
+        else
+            echo "Skipped patch to meta-ros: $patchfile"
+        fi
+    done
+
+    cd -
+}
+
+patches_for_meta_ros &> /dev/null
+
+ROBOT_MACHINE=${MACHINE}
+source ${SRC_TREE}/setup-environment
+
+if [[ ${ROBOT_MACHINE} == *"6490"* ]];then
+    if [ ! -d ${SRC_TREE}/downloads/meta-ros-custom ];then
+        mkdir ${SRC_TREE}/downloads 2> /dev/null
+        cd ${SRC_TREE}/downloads
+        git clone https://git.codelinaro.org/clo/le/meta-ros.git -b ros.qclinux.1.0.r1-rel meta-ros-custom
+        cd -
+    fi
+
+    # Add robotics layers
+    if [ `grep -c "meta-ros2" ${BUILDDIR}/conf/bblayers.conf` -eq '0' ]; then
+        cat >> ${BUILDDIR}/conf/bblayers.conf <<EOF
 
 BBLAYERS += " \\
-  \${WORKSPACE}/layers/meta-qcom-robotics-sdk \\
-  \${WORKSPACE}/layers/meta-qcom-robotics-distro \\
-  \${WORKSPACE}/layers/meta-qcom-robotics \\
-  \${WORKSPACE}/layers/meta-qcom-qim-product-sdk \\
-  \${WORKSPACE}/layers/meta-ros/meta-ros2 \\
-  \${WORKSPACE}/layers/meta-ros/meta-ros2-humble \\
-  \${WORKSPACE}/layers/meta-ros/meta-ros-common \\
+${SRC_TREE}/downloads/meta-ros-custom/meta-ros2 \\
+${SRC_TREE}/downloads/meta-ros-custom/meta-ros2-humble \\
+${SRC_TREE}/downloads/meta-ros-custom/meta-ros-common \\
+${SRC_TREE}/layers/meta-qcom-qim-product-sdk \\
+${SRC_TREE}/layers/meta-qcom-robotics-sdk \\
+${SRC_TREE}/layers/meta-qcom-robotics-distro \\
+${SRC_TREE}/layers/meta-qcom-robotics \\
+"
+EOF
+   fi
+else # [ ${MACHINE} != *"6490" ]
+    # Add robotics layers
+    if [ `grep -c "meta-ros2" ${BUILDDIR}/conf/bblayers.conf` -eq '0' ]; then
+        cat >> ${BUILDDIR}/conf/bblayers.conf <<EOF
+
+BBLAYERS += " \\
+${SRC_TREE}/layers/meta-ros/meta-ros2 \\
+${SRC_TREE}/layers/meta-ros/meta-ros2-humble \\
+${SRC_TREE}/layers/meta-ros/meta-ros-common \\
+${SRC_TREE}/layers/meta-qcom-qim-product-sdk \\
+${SRC_TREE}/layers/meta-qcom-robotics-sdk \\
+${SRC_TREE}/layers/meta-qcom-robotics-distro \\
+${SRC_TREE}/layers/meta-qcom-robotics \\
 "
 
 EOF
+   fi
+fi
