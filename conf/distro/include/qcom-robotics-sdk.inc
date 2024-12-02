@@ -8,7 +8,7 @@
 
 
 # To provide tools for ROS node compile in SDK
-TOOLCHAIN_HOST_TASK:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', ' \
+TOOLCHAIN_HOST_TASK:append = "${@bb.utils.contains_any('DISTRO_FEATURES', 'ros2-humble ros2-jazzy', ' \
     nativesdk-ament-package \
     nativesdk-python3-colcon-common-extensions \
     nativesdk-python3-numpy \
