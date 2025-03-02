@@ -18,7 +18,6 @@ RDEPENDS:${PN} = "\
 "
 
 RDEPENDS:${PN}-extend = "\
-    graphviz \
     rosidl-default-generators \
     launch-ros \
     joint-state-publisher \
@@ -29,6 +28,12 @@ RDEPENDS:${PN}-extend = "\
     rcl-logging-noop \
     image-transport \
     domain-bridge \
+    navigation2 \
+    nav2-common \
+    nav2-msgs \
+    image-transport-plugins \
+    cv-bridge \
+    vision-msgs \
 "
 
 RDEPENDS:${PN}-samples = "\

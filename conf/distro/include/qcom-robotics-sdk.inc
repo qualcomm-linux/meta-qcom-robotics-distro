@@ -26,12 +26,14 @@ TOOLCHAIN_HOST_TASK:append = "${@bb.utils.contains_any('DISTRO_FEATURES', 'ros2-
     nativesdk-rosidl-typesupport-introspection-cpp \
 ', '', d)}"
 
-
-# To provide libs for VSLAM ROS node compile in SDK
-TOOLCHAIN_HOST_TASK:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ros2-humble', ' \
-    nativesdk-ament-package \
+# To provide libs for ROS node compile in SDK
+ROS_SDK_TARGET_PACKAGES:append = "${@bb.utils.contains('DISTRO_FEATURES', 'ros2-jazzy', ' \
+    python-cmake-module \
 ', '', d)}"
 
 
 TOOLCHAIN_TARGET_TASK:remove = "qirp-sdk"
 TOOLCHAIN_TARGET_TASK:remove = "qirf-sdk"
+
+# Add default packages from meta-ros ros-sdk.inc
+TOOLCHAIN_HOST_TASK:append = " ${ROS_SDK_HOST_PACKAGES}"
