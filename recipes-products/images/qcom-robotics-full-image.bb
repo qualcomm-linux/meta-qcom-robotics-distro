@@ -1,3 +1,6 @@
+# Copyright (c) 2025 Qualcomm Innovation Center, Inc. All rights reserved.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
+
 include recipes-products/images/qcom-multimedia-image.bb
 
 SUMMARY = "multimedia image with ros and qirp sdk"
