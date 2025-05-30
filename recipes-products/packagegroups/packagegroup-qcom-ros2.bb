@@ -37,6 +37,13 @@ RDEPENDS:${PN}-extend = "\
     image-transport-plugins \
     cv-bridge \
     vision-msgs \
+    foxglove-bridge \
+    foxglove-msgs \
+    moveit-runtime \
+    moveit-configs-utils \
+    moveit-planners-chomp \
+    moveit-ros-perception-dev \
+    moveit-planners-ompl-dev \
 "
 
 RDEPENDS:${PN}-samples = "\
