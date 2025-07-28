@@ -44,6 +44,9 @@ RDEPENDS:${PN}-extend = "\
     moveit-planners-chomp \
     moveit-ros-perception-dev \
     moveit-planners-ompl-dev \
+    apriltag \
+    apriltag-ros \
+    apriltag-msgs \
 "
 
 RDEPENDS:${PN}-samples = "\
